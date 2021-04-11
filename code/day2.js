@@ -1059,8 +1059,6 @@ const testData = [
   "2 - 9 c: ccccccccc",
 ]
 
-
-
 const countValidPasswords = (data) => {
 
   let count = 0
@@ -1070,7 +1068,8 @@ const countValidPasswords = (data) => {
     const line = data[i].split(" ")
     // console.log(`parts length: ${parts}`)
 
-    const min = parseInt(line[0].replace(",", ""))
+    // const min = parseInt(line[0].replace(",", ""))
+    const min = parseInt(line[0])
     // console.log(`min: ${min}`)
     const max = parseInt(line[2])
     // console.log(`max: ${max}`)
@@ -1085,14 +1084,13 @@ const countValidPasswords = (data) => {
     // const letter = data[i].charAt(6)
     // console.log(`letter: ${letter}`)
 
-    const password = data[i].slice(9, data[i].length)
+    // const password = data[i].slice(9, data[i].length)
+    const password = line[4]
     // console.log(`pw: ${password}`)
 
     //division is done where the letter is _> 1 split = 2 items
     const nrOfMatches = password.split(`${letter}`).length - 1
     // console.log(`nr of matches: ${nrOfMatches}`)
-
-    // const validPasswords = (nrOfMatches, min, max) => {
 
     if (nrOfMatches < min) {
 
@@ -1106,7 +1104,6 @@ const countValidPasswords = (data) => {
 
       count++
     }
-    // }
   }
 
   return count
