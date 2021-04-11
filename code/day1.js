@@ -1,5 +1,6 @@
 //how to import data?
 // _> implement FileReader object https://developer.mozilla.org/en-US/docs/Web/API/FileReader
+//https://www.youtube.com/watch?v=dD2rea_fCFk
 
 //select input element
 const input = document.querySelector("input")
@@ -78,7 +79,6 @@ const sumOfPairs = (array) => {
         console.log(`${array[i]}, ${array[j + 1]}`)
         return array[i] * array[j + 1]
       }
-      // console.log(sum)
     }
   }
 
@@ -86,7 +86,7 @@ const sumOfPairs = (array) => {
 }
 
 console.log(sumOfPairs(lines))
-//answer:
+//solution:
 // _> 51, 1969
 // _> 100419
 // console.log(sumOfPairs(testArray))
