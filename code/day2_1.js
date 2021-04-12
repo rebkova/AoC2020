@@ -1,16 +1,11 @@
-//new policy:
-//Exactly one of these positions must contain the given letter
-
-// import { dataDay2 } from "./day2"
-
-const testData = [
-  // "1 - 3 a: abcde",
-  // "1 - 3 b: cdefg",
-  // "2 - 9 c: ccccccccc",
-  "16 - 18 t: dttsttttttttttnttwt",
+const testDataDay2_1 = [
+  "1 - 3 a: abcde",
+  "1 - 3 b: cdefg",
+  "2 - 9 c: ccccccccc"
 ]
 
-const dataDay2 =
+//hard-coded data input (transformed using Notepad++)
+const dataDay2_1 =
   [
     "3 - 11 z: zzzzzdzzzzlzz",
     "3 - 7 x: xjxbgpxxgtx",
@@ -1014,49 +1009,49 @@ const dataDay2 =
     "2 - 8 j: jjjjjjjjjqjjj"
   ]
 
-const countValidPasswordsNewPolicy = (data) => {
+
+const countValidPasswords = data => {
 
   let count = 0
 
   for (let i = 0; i < data.length; i++) {
 
     const line = data[i].split(" ")
-    // console.log(`line: ${line}`)
-    // const minPosition = parseInt(line[0].replace(",", ""))
-    const minPosition = parseInt(line[0])
-    // console.log(`minPosition: ${minPosition}`)
-    const maxPosition = parseInt(line[2])
-    // console.log(`maxPosition: ${maxPosition}`)
+
+    const min = parseInt(line[0])
+
+    const max = parseInt(line[2])
+
     const letter = line[3].charAt(0)
-    // console.log(`letter: ${letter}`)
-    // const password = data[i].slice(9, data[i].length)
+
     const password = line[4]
-    // console.log(`pw: ${password}`)
 
-    // console.log(password.charAt(0))
-    // console.log(password.charAt(minPosition - 1))
-    // console.log(password.charAt(maxPosition - 1))
-    // console.log(password.indexOf("w"))
+    //division is done where the letter is _> 1 split = 2 items in array
+    const nrOfMatches = password.split(`${letter}`).length - 1
 
-    let nrOfMatches = 0
-    if (password.charAt(minPosition - 1) === letter) {
-      nrOfMatches++
-    }
+    if (nrOfMatches < min) {
 
-    if (password.charAt(maxPosition - 1) === letter) {
-      nrOfMatches++
-    }
+      count + 0
 
-    if (nrOfMatches === 1) {
+    } else if (nrOfMatches > max) {
+
+      count + 0
+
+    } else if (nrOfMatches >= min || nrOfMatches <= max) {
+
       count++
     }
-
   }
 
   return count
 }
 
-// console.log(countValidPasswordsNewPolicy(testData))
-console.log(countValidPasswordsNewPolicy(dataDay2))
-// solution:
-//_> 634
+// console.log(countValidPasswords(testDataDay2_1))
+
+const solutionDay2_1 = countValidPasswords(dataDay2_1)
+
+console.log(`solution day 2_1: ${solutionDay2_1}`)
+
+//solution: 
+//_> 550
+

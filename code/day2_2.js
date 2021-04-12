@@ -1,51 +1,13 @@
-//How many passwords are valid?
+//new policy:
+//Exactly one of these positions must contain the given letter
+//no concept of index (1 = pos 1)
 
-//asynchronous function!
-// const getData = () => {
 
-const input = document.querySelector("input")
-const textarea = document.querySelector("textarea")
-
-var lines;
-
-input.addEventListener("change", () => {
-
-  //get all the files
-  const files = input.files
-
-  console.log(`files: ${files}`)
-
-  //haven't selected any files
-  if (files.length === 0) return;
-
-  const file = files[0]
-  console.log(`file: ${file}`)
-
-  const reader = new FileReader()
-
-  //first event
-  reader.onload = (e) => {
-
-    //get the text out of the file
-    const text = e.target.result
-    // console.log(`text: ${text}`)
-    console.log(typeof (text))
-
-    // lines = String(text.split(/\r\n|\n/))
-    lines = text.split(/\r\n|\n/)
-    console.log(typeof (lines))
-    console.log(`lines: ${lines}`)
-
-    textarea.value = lines.concat("\n")
-    textarea.value = lines.join("\n")
-
-    return lines
-  }
-  reader.onerror = (e) => alert(e.target.error.name)
-
-  reader.readAsText(file)
-})
-// }
+const testDataDay2 = [
+  "1 - 3 a: abcde",
+  "1 - 3 b: cdefg",
+  "2 - 9 c: ccccccccc"
+]
 
 const dataDay2 =
   [
@@ -1051,67 +1013,44 @@ const dataDay2 =
     "2 - 8 j: jjjjjjjjjqjjj"
   ]
 
-// console.log(lines)
-
-const testData = [
-  "1 - 3 a: abcde",
-  "1 - 3 b: cdefg",
-  "2 - 9 c: ccccccccc",
-]
-
-const countValidPasswords = (data) => {
+const countValidPasswordsNewPolicy = (data) => {
 
   let count = 0
 
   for (let i = 0; i < data.length; i++) {
 
     const line = data[i].split(" ")
-    // console.log(`parts length: ${parts}`)
 
-    // const min = parseInt(line[0].replace(",", ""))
-    const min = parseInt(line[0])
-    // console.log(`min: ${min}`)
-    const max = parseInt(line[2])
-    // console.log(`max: ${max}`)
+    const minPosition = parseInt(line[0])
+
+    const maxPosition = parseInt(line[2])
+
     const letter = line[3].charAt(0)
-    // console.log(`letter: ${letter}`)
-    // const min = data[i].charAt(0)
-    // // console.log(`min: ${min}`)
 
-    // const max = data[i].charAt(4)
-    // // console.log(`max: ${max}`)
-
-    // const letter = data[i].charAt(6)
-    // console.log(`letter: ${letter}`)
-
-    // const password = data[i].slice(9, data[i].length)
     const password = line[4]
-    // console.log(`pw: ${password}`)
 
-    //division is done where the letter is _> 1 split = 2 items
-    const nrOfMatches = password.split(`${letter}`).length - 1
-    // console.log(`nr of matches: ${nrOfMatches}`)
+    let nrOfMatches = 0
+    if (password.charAt(minPosition - 1) === letter) {
+      nrOfMatches++
+    }
 
-    if (nrOfMatches < min) {
+    if (password.charAt(maxPosition - 1) === letter) {
+      nrOfMatches++
+    }
 
-      count + 0
-
-    } else if (nrOfMatches > max) {
-
-      count + 0
-
-    } else if (nrOfMatches >= min || nrOfMatches <= max) {
-
+    if (nrOfMatches === 1) {
       count++
     }
+
   }
 
   return count
 }
 
-// console.log(countValidPasswords(testData))
-console.log(countValidPasswords(dataDay2))
+// console.log(countValidPasswordsNewPolicy(testDataDay2))
 
-//solution: 
-//_> 550
+const solutionDay2_2 = countValidPasswordsNewPolicy(dataDay2)
+console.log(`solution day 2-2: ${solutionDay2_2}`)
 
+// solution:
+//_> 634
