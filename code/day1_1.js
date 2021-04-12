@@ -49,49 +49,47 @@ console.log(`solution day 1_1: ${solutionDay1_1}`)
 //https://www.youtube.com/watch?v=dD2rea_fCFk
 
 //select input element
-// const input = document.querySelector("input")
-// const textarea = document.querySelector("textarea")
+const input = document.querySelector("input")
+const textarea = document.querySelector("textarea")
 
-// var lines;
+var lines;
 
-//asynchronous function!
-// const getData = () => {
+// asynchronous function!
+input.addEventListener("change", () => {
 
-//   input.addEventListener("change", () => {
+  //get all the files
+  const files = input.files
 
-//     //get all the files
-//     const files = input.files
+  console.log(`files: ${files}`)
 
-//     console.log(`files: ${files}`)
+  //exit if no files were selected
+  if (files.length === 0) return;
 
-//     //haven't selected any files
-//     if (files.length === 0) return;
+  const file = files[0]
+  console.log(`file: ${file}`)
 
-//     const file = files[0]
-//     console.log(`file: ${file}`)
+  const reader = new FileReader()
 
-//     const reader = new FileReader()
+  //first event
+  reader.onload = (e) => {
 
-//     //first event
-//     reader.onload = (e) => {
+    //get the text out of the file
+    const text = e.target.result
+    console.log(`text: ${text}`)
+    console.log(typeof (text))
 
-//       //get the text out of the file
-//       const text = e.target.result
-//       console.log(`text: ${text}`)
-//       console.log(typeof (text))
+    //to read it line-by-line
+    lines = text.split(/\r\n|\n/)
+    console.log(typeof (lines))
+    console.log(`lines: ${lines}`)
 
-//       lines = text.split(/\r\n|\n/)
-//       console.log(typeof (lines))
-//       console.log(`lines: ${lines}`)
+    //joining new lines by the new line character
+    textarea.value = lines.join("\n")
 
+  }
+  reader.onerror = (e) => alert(e.target.error.name)
 
-//       textarea.value = lines.join("\n")
+  reader.readAsText(file)
+})
 
-//       return lines
-//     }
-//     reader.onerror = (e) => alert(e.target.error.name)
-
-//     reader.readAsText(file)
-//   })
-// }
 // console.log(lines)
