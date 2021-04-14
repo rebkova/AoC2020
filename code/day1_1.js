@@ -12,28 +12,28 @@ const testDataDay1_1 = [
   1456
 ]
 
-const sumOfPairs = array => {
+// const sumOfPairs = array => {
 
-  //first nr
-  for (let i = 0; i < array.length - 1; i++) {
+//   //first nr
+//   for (let i = 0; i < array.length - 1; i++) {
 
-    //second nr
-    for (let j = i; j < array.length - 1; j++) {
+//     //second nr
+//     for (let j = i; j < array.length - 1; j++) {
 
-      let sum = array[i] + array[j + 1]
+//       let sum = array[i] + array[j + 1]
 
-      if (sum === 2020) {
-        console.log(`pairs day 1_1: ${array[i]}, ${array[j + 1]}`)
-        return array[i] * array[j + 1]
-      }
-    }
-  }
-}
+//       if (sum === 2020) {
+//         console.log(`pairs day 1_1: ${array[i]}, ${array[j + 1]}`)
+//         return array[i] * array[j + 1]
+//       }
+//     }
+//   }
+// }
 
 // console.log(sumOfPairs(testDataDay1_1))
 
-const solutionDay1_1 = sumOfPairs(dataDay1_1)
-console.log(`solution day 1_1: ${solutionDay1_1}`)
+// const solutionDay1_1 = sumOfPairs(dataDay1_1)
+// console.log(`solution day 1_1: ${solutionDay1_1}`)
 
 //solution:
 // _> 51, 1969
@@ -52,6 +52,25 @@ console.log(`solution day 1_1: ${solutionDay1_1}`)
 const input = document.querySelector("input")
 const textarea = document.querySelector("textarea")
 
+
+var sumOfPairs = array => {
+
+  //first nr
+  for (let i = 0; i < array.length - 1; i++) {
+
+    //second nr
+    for (let j = i; j < array.length - 1; j++) {
+
+      let sum = array[i] + array[j + 1]
+
+      if (sum === 2020) {
+        console.log(`pairs day 1_1: ${array[i]}, ${array[j + 1]}`)
+        return array[i] * array[j + 1]
+      }
+    }
+  }
+}
+
 var lines;
 
 // asynchronous function!
@@ -59,37 +78,58 @@ input.addEventListener("change", () => {
 
   //get all the files
   const files = input.files
+  console.log(input.files)
 
-  console.log(`files: ${files}`)
+  // console.log(`files: ${files}`) //[object FileList]
 
   //exit if no files were selected
   if (files.length === 0) return;
 
   const file = files[0]
-  console.log(`file: ${file}`)
+  console.log(`file: ${file}`) //[object File]
 
+  //API!
   const reader = new FileReader()
 
   //first event
-  reader.onload = (e) => {
+  reader.onload = () => {
 
     //get the text out of the file
-    const text = e.target.result
-    console.log(`text: ${text}`)
-    console.log(typeof (text))
+    //when the reader finishes loading, we read the result
+    const text = reader.result
+    console.log(`text: ${text}`) //all the nrs in a column
+    console.log(typeof (text)) //string
 
     //to read it line-by-line
-    lines = text.split(/\r\n|\n/)
-    console.log(typeof (lines))
-    console.log(`lines: ${lines}`)
+    lines = text.split(/\r\n|\n/) //array of strings!
+    const correctResult = sumOfPairs(lines) //undefined
+    console.log(correctResult)
+    // console.log(sumOfPairs(lines))
+
+    // sumOfPairs(lines)
+    // console.log(result)
+    // console.log(sumOfPairs(lines))
+    console.log(lines)
+    console.log(typeof (lines)) //object (=array!)
+    console.log(`lines: ${lines}`) //all nrs separated with comma in a paragraph
 
     //joining new lines by the new line character
-    textarea.value = lines.join("\n")
-
+    textarea.value = lines //displays nrs in textarea 
   }
+
   reader.onerror = (e) => alert(e.target.error.name)
 
   reader.readAsText(file)
 })
+
+
+
+
+
+
+
+
+
+
 
 // console.log(lines)
