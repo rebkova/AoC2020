@@ -1030,6 +1030,8 @@ const countValidPasswordsNewPolicy = (data) => {
     const password = line[4]
 
     let nrOfMatches = 0
+
+    //could avoid nrOfMatches variable by comparing both statements != _> add count
     if (password.charAt(minPosition - 1) === letter) {
       nrOfMatches++
     }

@@ -1029,15 +1029,7 @@ const countValidPasswords = data => {
     //division is done where the letter is _> 1 split = 2 items in array
     const nrOfMatches = password.split(letter).length - 1
 
-    if (nrOfMatches < min) {
-
-      count + 0
-
-    } else if (nrOfMatches > max) {
-
-      count + 0
-
-    } else if (nrOfMatches >= min || nrOfMatches <= max) {
+    if (nrOfMatches >= min || nrOfMatches <= max) {
 
       count++
     }
