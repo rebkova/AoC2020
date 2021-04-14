@@ -20,7 +20,7 @@ const sumOfPairs = array => {
     //second nr
     for (let j = i; j < array.length - 1; j++) {
 
-      let sum = array[i] + array[j + 1]
+      const sum = array[i] + array[j + 1]
 
       if (sum === 2020) {
         console.log(`pairs day 1_1: ${array[i]}, ${array[j + 1]}`)
@@ -49,49 +49,49 @@ console.log(`solution day 1_1: ${solutionDay1_1}`)
 //https://www.youtube.com/watch?v=dD2rea_fCFk
 
 //select input element
-// const input = document.querySelector("input")
-// const textarea = document.querySelector("textarea")
+const input = document.querySelector("input")
+const textarea = document.querySelector("textarea")
 
 // var lines;
 
 //asynchronous function!
 // const getData = () => {
 
-//   input.addEventListener("change", () => {
+input.addEventListener("change", () => {
 
-//     //get all the files
-//     const files = input.files
+  //get all the files
+  const files = input.files
 
-//     console.log(`files: ${files}`)
+  console.log(`files: ${files}`)
 
-//     //haven't selected any files
-//     if (files.length === 0) return;
+  //haven't selected any files
+  if (files.length === 0) return;
 
-//     const file = files[0]
-//     console.log(`file: ${file}`)
+  const file = files[0]
+  console.log(`file: ${file}`)
 
-//     const reader = new FileReader()
+  const reader = new FileReader()
 
-//     //first event
-//     reader.onload = (e) => {
+  //first event
+  reader.onload = (e) => {
 
-//       //get the text out of the file
-//       const text = e.target.result
-//       console.log(`text: ${text}`)
-//       console.log(typeof (text))
+    //get the text out of the file
+    const text = e.target.result
+    console.log(`text: ${text}`)
+    console.log(typeof (text))
 
-//       lines = text.split(/\r\n|\n/)
-//       console.log(typeof (lines))
-//       console.log(`lines: ${lines}`)
+    const lines = text.split(/\r\n|\n/)
+    console.log(typeof (lines))
+    console.log(`lines: ${lines}`)
 
 
-//       textarea.value = lines.join("\n")
+    textarea.value = lines.join("\n")
 
-//       return lines
-//     }
-//     reader.onerror = (e) => alert(e.target.error.name)
+    return lines
+  }
+  reader.onerror = (e) => alert(e.target.error.name)
 
-//     reader.readAsText(file)
-//   })
+  reader.readAsText(file)
+})
 // }
 // console.log(lines)

@@ -1027,7 +1027,7 @@ const countValidPasswords = data => {
     const password = line[4]
 
     //division is done where the letter is _> 1 split = 2 items in array
-    const nrOfMatches = password.split(`${letter}`).length - 1
+    const nrOfMatches = password.split(letter).length - 1
 
     if (nrOfMatches < min) {
 
